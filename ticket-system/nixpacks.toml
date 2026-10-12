@@ -2,7 +2,7 @@
 nixPkgs = ["nodejs_20", "php83", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "php83Extensions.mbstring", "php83Extensions.tokenizer", "php83Extensions.xml", "php83Extensions.ctype", "php83Extensions.fileinfo", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.bcmath", "php83Extensions.intl"]
 
 [phases.install]
-cmds = ["curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer", "composer install --no-dev --optimize-autoloader --no-interaction", "npm ci"]
+cmds = ["curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer", "/usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction", "npm ci"]
 
 [phases.build]
 cmds = ["npm run build", "php artisan config:cache", "php artisan route:cache", "php artisan view:cache"]
