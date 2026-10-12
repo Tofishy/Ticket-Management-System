@@ -17,7 +17,14 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        $user = auth()->user();
+        $stats = [
+            'total'       => $user->tickets()->count(),
+            'open'        => $user->tickets()->where('status', 'Open')->count(),
+            'in_progress' => $user->tickets()->where('status', 'In Progress')->count(),
+            'resolved'    => $user->tickets()->where('status', 'Resolved')->count(),
+        ];
+        return Inertia::render('Dashboard', ['stats' => $stats]);
     })->name('dashboard');
 
     Route::resource('tickets', TicketController::class);
