@@ -8,4 +8,4 @@ cmds = ["curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/
 cmds = ["npm run build", "php artisan config:cache", "php artisan route:cache", "php artisan view:cache"]
 
 [start]
-cmd = "php artisan migrate --force && php artisan db:seed --force && php -S 0.0.0.0:$PORT -t public"
+cmd = "chmod +x start.sh && bash start.sh"
